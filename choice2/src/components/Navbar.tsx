@@ -3,13 +3,12 @@ import { ChevronDown, ArrowRight, Menu, X, Sun, Moon } from 'lucide-react';
 import { ParsimLogo } from './ParsimLogo';
 
 interface NavbarProps {
-  onOpenContact: () => void;
   onNavigateSection: (id: string) => void;
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection, theme, onToggleTheme }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onNavigateSection, theme, onToggleTheme }) => {
   const [companyDropdownOpen, setCompanyDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,10 +35,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
           </button>
 
           <button 
-            onClick={() => onNavigateSection('token-maximizer')} 
+            onClick={() => onNavigateSection('live-token-stream')} 
             className="hover:text-white transition-colors cursor-pointer flex items-center gap-2 group"
           >
-            <span>Token Maximizer</span>
+            <span>Live Token Stream</span>
             <span className="relative flex h-2 w-2">
               <span className="animate-radar-wave absolute inline-flex h-full w-full rounded-full bg-[#ff3b00] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff3b00]" />
@@ -53,13 +52,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
             Why Parsim
           </button>
 
-          <button 
-            onClick={() => onNavigateSection('performance')} 
-            className="hover:text-white transition-colors cursor-pointer"
-          >
-            Benchmarks
-          </button>
-          
           <button 
             onClick={() => onNavigateSection('news')} 
             className="hover:text-white transition-colors cursor-pointer"
@@ -97,15 +89,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
                     onClick={(e) => { e.preventDefault(); onNavigateSection('testimonial'); setCompanyDropdownOpen(false); }}
                     className="block px-3 py-2 text-xs text-neutral-300 hover:text-white hover:bg-neutral-900 rounded transition-colors"
                   >
-                    Frontier AI Testimonials
+                    Parsim Philosophy
                   </a>
-                  <button 
-                    onClick={() => { onOpenContact(); setCompanyDropdownOpen(false); }}
+                  <a
+                    href="/auth"
                     className="w-full text-left px-3 py-2 text-xs text-neutral-300 hover:text-white hover:bg-neutral-900 rounded transition-colors flex items-center justify-between"
                   >
                     <span>Inference Kernel Engineers</span>
                     <span className="text-[10px] text-[#ff3b00] font-mono font-semibold">Hiring</span>
-                  </button>
+                  </a>
                   <a 
                     href="#news" 
                     onClick={(e) => { e.preventDefault(); onNavigateSection('news'); setCompanyDropdownOpen(false); }}
@@ -119,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
           </div>
         </nav>
 
-        {/* Theme toggle + CTA Button: International Safety Orange #ff3b00 with Shimmer */}
+        {/* Theme toggle + CTA Button: Orange background with Black text */}
         <div className="hidden sm:flex items-center gap-4">
           <button
             onClick={onToggleTheme}
@@ -129,17 +121,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
 
-          <button
-            onClick={onOpenContact}
-            className="group relative overflow-hidden flex items-center gap-2.5 bg-[#ff3b00] hover:bg-[#ff4d15] text-black text-xs font-semibold px-4 py-2.5 rounded-sm transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#ff3b00]/25 cursor-pointer"
+          <a
+            href="/auth"
+            className="group relative overflow-hidden flex items-center gap-2.5 bg-[#ff3b00] hover:bg-[#ff4d15] text-black text-xs font-bold px-4 py-2.5 rounded-sm transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#ff3b00]/25 cursor-pointer"
           >
-            {/* Shimmer light sweep */}
             <span className="absolute inset-0 animate-shimmer-sweep pointer-events-none" />
-            <span className="relative z-10">Deploy Engine</span>
+            <span className="relative z-10 text-black">Deploy Engine</span>
             <span className="relative z-10 w-4 h-4 bg-black/15 flex items-center justify-center rounded-sm transition-transform duration-200 group-hover:translate-x-0.5">
               <ArrowRight className="w-2.5 h-2.5 text-black" />
             </span>
-          </button>
+          </a>
         </div>
 
         {/* Mobile menu trigger */}
@@ -152,13 +143,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
 
-          <button
-            onClick={onOpenContact}
-            className="flex items-center gap-2 bg-[#ff3b00] text-black text-xs font-semibold px-3 py-2 rounded-sm"
+          <a
+            href="/auth"
+            className="flex items-center gap-2 bg-[#ff3b00] text-black text-xs font-bold px-3 py-2 rounded-sm"
           >
             <span>Deploy</span>
             <ArrowRight className="w-3 h-3 text-black" />
-          </button>
+          </a>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-neutral-400 hover:text-white focus:outline-none"
@@ -179,11 +170,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
             Architecture
           </button>
           <button 
-            onClick={() => { onNavigateSection('token-maximizer'); setMobileMenuOpen(false); }}
+            onClick={() => { onNavigateSection('live-token-stream'); setMobileMenuOpen(false); }}
             className="block w-full text-left text-sm text-neutral-300 hover:text-white py-1 flex items-center justify-between"
           >
-            <span>Token Maximizer</span>
-            <span className="text-[10px] bg-[#ff3b00] text-black font-semibold px-1.5 py-0.5 rounded">NEW</span>
+            <span>Live Token Stream</span>
+            <span className="text-[10px] bg-[#ff3b00] text-black font-semibold px-1.5 py-0.5 rounded">LIVE</span>
           </button>
           <button 
             onClick={() => { onNavigateSection('why-parsim'); setMobileMenuOpen(false); }}
@@ -192,25 +183,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateSection
             Why Parsim
           </button>
           <button 
-            onClick={() => { onNavigateSection('performance'); setMobileMenuOpen(false); }}
-            className="block w-full text-left text-sm text-neutral-300 hover:text-white py-1"
-          >
-            Benchmarks
-          </button>
-          <button 
             onClick={() => { onNavigateSection('news'); setMobileMenuOpen(false); }}
             className="block w-full text-left text-sm text-neutral-300 hover:text-white py-1"
           >
             Research
           </button>
           <div className="pt-2">
-            <button
-              onClick={() => { onOpenContact(); setMobileMenuOpen(false); }}
-              className="w-full flex items-center justify-center gap-2 bg-[#ff3b00] text-black text-xs font-semibold py-3 rounded-sm"
+            <a
+              href="/auth"
+              className="w-full flex items-center justify-center gap-2 bg-[#ff3b00] text-black text-xs font-bold py-3 rounded-sm"
             >
               <span>Deploy Engine</span>
               <ArrowRight className="w-3 h-3 text-black" />
-            </button>
+            </a>
           </div>
         </div>
       )}
