@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenPress }) => {
               <EditableText
                 id="hero_headline"
                 as="span"
-                defaultText="Tokens that think across horizons."
+                defaultText="Better inference for long-horizon agents."
               />
             </h1>
           </ScrollReveal>
