@@ -36,7 +36,7 @@ export default function App() {
 
   // Light / dark theme
   const [theme, setTheme] = useState<'dark' | 'light'>(
-    () => localStorage.getItem('themePreference') === 'dark' ? 'dark' : 'light'
+    () => localStorage.getItem('themePreference') === 'light' ? 'light' : 'dark'
   );
 
   useEffect(() => {
